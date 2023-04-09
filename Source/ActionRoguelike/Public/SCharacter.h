@@ -8,6 +8,8 @@
 
 class UCameraComponent;
 class USpringArmComponent;
+class USInteractionComponent;
+class UAnimMontage;
 
 UCLASS()
 class ACTIONROGUELIKE_API ASCharacter : public ACharacter
@@ -21,14 +23,48 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	TSubclassOf<AActor> ProjectileClass;
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	TSubclassOf<AActor> DashProjectileClass;
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	TSubclassOf<AActor> BlackHoleProjectileClass;
+
+	UPROPERTY(EditAnywhere,Category="Attack")
+		UAnimMontage* AttackAnim;
+
+	UPROPERTY(EditAnywhere, Category = "Attack")
+		float AttackAnimDelay;
+
+	FTimerHandle TimerHandle_PrimaryAttack;
+	FTimerHandle TimerHandle_Dash;
+	FTimerHandle TimerHandle_BlackHole;
 
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* CameraComp;
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArmComp;
+	UPROPERTY(VisibleAnywhere)
+		USInteractionComponent* InteractionComp;
 
 	void MoveForward(float value);
 	void MoveRight(float value);
+
+	void PrimaryAttack();
+	void PrimaryInteract();
+
+	void PrimaryAttack_TimeElapsed();
+
+	void SpawnProjectile(TSubclassOf<AActor> ClassToSpawn);
+
+	void Dash();
+	void Dash_TimeElapsed();
+
+	void BlackHoleAttack();
+	void BlackHoleAttack_TimeElapesed();
+
+	void DashShift();
+	void DashShiftComplete();
 
 public:	
 	// Called every frame
