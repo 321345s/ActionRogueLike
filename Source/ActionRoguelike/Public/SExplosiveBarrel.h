@@ -24,6 +24,8 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	URadialForceComponent* ForceComp;
 
+	bool Exploded;
+
 	virtual void PostInitializeComponents() override;
 
 	UFUNCTION()

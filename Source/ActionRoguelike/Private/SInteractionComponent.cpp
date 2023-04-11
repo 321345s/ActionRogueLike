@@ -4,6 +4,7 @@
 #include "SInteractionComponent.h"
 #include "SGameplayInterface.h"
 #include "DrawDebugHelpers.h"
+#include "Camera/CameraComponent.h"
 
 // Sets default values for this component's properties
 USInteractionComponent::USInteractionComponent()
@@ -29,6 +30,9 @@ void USInteractionComponent::PrimaryInteract()
 	FRotator EyeRotation;
 	MyOwner->GetActorEyesViewPoint(EyeLocation, EyeRotation);
 	FVector End = EyeLocation + (EyeRotation.Vector() * 1000);
+	
+
+	
 	//FHitResult Hit;
 	//bool bBlockingHit = GetWorld()->LineTraceSingleByObjectType(Hit,EyeLocation,End,ObjectQueryParams);
 

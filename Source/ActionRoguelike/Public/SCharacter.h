@@ -10,6 +10,7 @@ class UCameraComponent;
 class USpringArmComponent;
 class USInteractionComponent;
 class UAnimMontage;
+class USAttributeComponent;
 
 UCLASS()
 class ACTIONROGUELIKE_API ASCharacter : public ACharacter
@@ -46,6 +47,8 @@ protected:
 	USpringArmComponent* SpringArmComp;
 	UPROPERTY(VisibleAnywhere)
 		USInteractionComponent* InteractionComp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+		USAttributeComponent* AttributeComp;
 
 	void MoveForward(float value);
 	void MoveRight(float value);
