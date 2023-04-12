@@ -30,6 +30,13 @@ ASCharacter::ASCharacter()
 
 }
 
+void ASCharacter::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	AttributeComp->onHealthChanged.AddDynamic(this, &ASCharacter::OnHealthChanged);
+
+}
+
 // Called when the game starts or when spawned
 void ASCharacter::BeginPlay()
 {
@@ -151,6 +158,14 @@ void ASCharacter::DashShiftComplete()
 	GetCharacterMovement()->MaxWalkSpeed = 600;
 }
 
+void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComp, float NewHealth, float Delta)
+{
+	if (NewHealth <= 0&&Delta<0.0f) {
+		APlayerController* PC = Cast<APlayerController>(GetController());
+		DisableInput(PC);
+	}
+}
+
 // Called every frame
 void ASCharacter::Tick(float DeltaTime)
 {
@@ -179,4 +194,6 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAction("DashShiftComplete", IE_Released, this, &ASCharacter::DashShiftComplete);
 
 }
+
+
 
