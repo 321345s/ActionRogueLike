@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "STargetDummy.generated.h"
 
+class USAttributeComponent;
+
 UCLASS()
 class ACTIONROGUELIKE_API ASTargetDummy : public AActor
 {
@@ -16,11 +18,15 @@ public:
 	ASTargetDummy();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(VisibleAnywhere)
+		USAttributeComponent* AttributeComp;
+	UPROPERTY(VisibleAnywhere)
+		UStaticMeshComponent* MeshComp;
+	UFUNCTION()
+		void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComp, float NewHealth, float Delta);
+
+
+
 
 };
