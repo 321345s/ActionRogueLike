@@ -26,6 +26,8 @@ ASMagicProjectile::ASMagicProjectile()
 	MovementComp->bRotationFollowsVelocity = true;
 	MovementComp->bInitialVelocityInLocalSpace = true;
 
+	damage = -20;
+
 
 }
 
@@ -41,7 +43,7 @@ void ASMagicProjectile::OnActorOverlap( UPrimitiveComponent* OverlappedComponent
 	if (OtherActor&& OtherActor!=GetInstigator()) {
 		USAttributeComponent* AttributeComp = Cast<USAttributeComponent>(OtherActor->GetComponentByClass(USAttributeComponent::StaticClass()));
 		if (AttributeComp) {
-			AttributeComp->ApplyHealthChange(-20);
+			AttributeComp->ApplyHealthChange(damage);
 
 			Destroy();
 		}
