@@ -3,6 +3,7 @@
 
 #include "SPowerupActor_HealthPotion.h"
 #include "SAttributeComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 
 ASPowerupActor_HealthPotion::ASPowerupActor_HealthPotion()
@@ -16,6 +17,7 @@ ASPowerupActor_HealthPotion::ASPowerupActor_HealthPotion()
 
 void ASPowerupActor_HealthPotion::Interact_Implementation(APawn* InstigatorPawn)
 {
+	UKismetSystemLibrary::PrintString(this, "Hello HealthPotion");
 	if (!ensure(InstigatorPawn)) {
 		return;
 	}
