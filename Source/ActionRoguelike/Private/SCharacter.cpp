@@ -8,6 +8,9 @@
 #include "SInteractionComponent.h"
 #include "DrawDebugHelpers.h"
 #include "SAttributeComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Components/AudioComponent.h"
+#include "Sound/SoundCue.h"
 
 // Sets default values
 ASCharacter::ASCharacter()
@@ -30,6 +33,8 @@ ASCharacter::ASCharacter()
 
 	HandSocketName = "Muzzle_01";
 
+
+	HammerSound = CreateDefaultSubobject<USoundCue>("HammerSound");
 }
 
 void ASCharacter::PostInitializeComponents()
@@ -68,6 +73,7 @@ void ASCharacter::MoveRight(float value)
 void ASCharacter::PrimaryAttack()
 {
 	PlayAnimMontage(AttackAnim);
+	UGameplayStatics::SpawnSoundAttached(HammerSound,GetRootComponent());
 
 	GetWorldTimerManager().SetTimer(TimerHandle_PrimaryAttack,this,&ASCharacter::PrimaryAttack_TimeElapsed, AttackAnimDelay);
 

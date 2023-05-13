@@ -11,6 +11,7 @@ class USpringArmComponent;
 class USInteractionComponent;
 class UAnimMontage;
 class USAttributeComponent;
+class USoundCue;
 
 UCLASS()
 class ACTIONROGUELIKE_API ASCharacter : public ACharacter
@@ -52,6 +53,9 @@ protected:
 		USInteractionComponent* InteractionComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 		USAttributeComponent* AttributeComp;
+	//audio
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	USoundCue* HammerSound;
 
 	void MoveForward(float value);
 	void MoveRight(float value);

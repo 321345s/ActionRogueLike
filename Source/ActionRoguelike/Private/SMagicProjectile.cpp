@@ -62,6 +62,21 @@ void ASMagicProjectile::OnActorOverlap( UPrimitiveComponent* OverlappedComponent
 	}
 }
 
+//void ASMagicProjectile::OnActorHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+//{
+//	if (OtherActor && OtherActor != GetInstigator()) {
+//		USAttributeComponent* AttributeComp = Cast<USAttributeComponent>(OtherActor->GetComponentByClass(USAttributeComponent::StaticClass()));
+//		if (AttributeComp) {
+//			AttributeComp->ApplyHealthChange(damage);
+//			/*AudioComp = UGameplayStatics::SpawnSoundAttached(SoundImpact, GetRootComponent());
+//			AudioComp->Stop();*/
+//
+//			/*Destroy();*/
+//		}
+//	}
+//
+//}
+
 // Called every frame
 void ASMagicProjectile::Tick(float DeltaTime)
 {
