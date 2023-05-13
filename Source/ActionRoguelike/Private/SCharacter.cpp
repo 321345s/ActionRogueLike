@@ -172,6 +172,11 @@ void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent*
 		APlayerController* PC = Cast<APlayerController>(GetController());
 		DisableInput(PC);
 	}
+
+	if (Delta < 0.0f) {
+		/*UKismetSystemLibrary::PrintString(this, "Hello Hit");*/
+		GetMesh()->SetScalarParameterValueOnMaterials("TimeToHit", GetWorld()->TimeSeconds);
+	}
 }
 
 // Called every frame
