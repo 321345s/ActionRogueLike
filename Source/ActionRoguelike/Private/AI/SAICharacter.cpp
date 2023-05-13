@@ -36,10 +36,9 @@ void ASAICharacter::OnPawnSeen(APawn* Pawn)
 
 void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComp, float NewHealth, float Delta)
 {
-	/*if (NewHealth <= 0 && Delta < 0.0f) {
-		AAIController* AIC = Cast<AAIController>(GetController());
-		DisableInput(AIC);
-	}*/
+	if (NewHealth <= 0 && Delta < 0.0f) {
+		Destroy();
+	}
 
 	if (Delta < 0.0f) {
 		/*UKismetSystemLibrary::PrintString(this, "Hello Hit");*/
