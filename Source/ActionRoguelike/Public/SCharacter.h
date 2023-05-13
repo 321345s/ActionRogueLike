@@ -37,6 +37,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Attack")
 		float AttackAnimDelay;
 
+	UPROPERTY(VisibleAnywhere, Category = "Effects")
+		FName HandSocketName;
+
 	FTimerHandle TimerHandle_PrimaryAttack;
 	FTimerHandle TimerHandle_Dash;
 	FTimerHandle TimerHandle_BlackHole;

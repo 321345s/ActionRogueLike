@@ -5,7 +5,10 @@
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "Sound/SoundCue.h"
+#include "Kismet/GameplayStatics.h"
 #include "SAttributeComponent.h"
+#include "Components/AudioComponent.h"
 
 // Sets default values
 ASMagicProjectile::ASMagicProjectile()
@@ -28,6 +31,12 @@ ASMagicProjectile::ASMagicProjectile()
 
 	damage = -20;
 
+	//sound
+	/*SoundLoop = CreateDefaultSubobject<USoundCue>("SoundLoop");
+	SoundImpact = CreateDefaultSubobject<USoundCue>("SoundImpact");*/
+	/*AudioComp = CreateDefaultSubobject<UAudioComponent>("AudioComp");
+	AudioComp->SetupAttachment(SphereComp);
+	AudioComp->SetSound(SoundLoop);*/
 
 }
 
@@ -35,7 +44,8 @@ ASMagicProjectile::ASMagicProjectile()
 void ASMagicProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	/*UGameplayStatics::SpawnSoundAttached(SoundLoop,GetRootComponent());*/
+	/*AudioComp = UGameplayStatics::SpawnSoundAttached(SoundLoop, GetRootComponent());*/
 }
 
 void ASMagicProjectile::OnActorOverlap( UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -44,8 +54,10 @@ void ASMagicProjectile::OnActorOverlap( UPrimitiveComponent* OverlappedComponent
 		USAttributeComponent* AttributeComp = Cast<USAttributeComponent>(OtherActor->GetComponentByClass(USAttributeComponent::StaticClass()));
 		if (AttributeComp) {
 			AttributeComp->ApplyHealthChange(damage);
-
-			Destroy();
+			/*AudioComp = UGameplayStatics::SpawnSoundAttached(SoundImpact, GetRootComponent());
+			AudioComp->Stop();*/
+			
+			/*Destroy();*/
 		}
 	}
 }

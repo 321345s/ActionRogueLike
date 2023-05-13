@@ -9,6 +9,8 @@
 class USphereComponent;
 class UProjectileMovementComponent;
 class UParticleSystemComponent;
+class USoundCue;
+class UAudioComponent;
 
 UCLASS()
 class ACTIONROGUELIKE_API ASMagicProjectile : public AActor
@@ -29,6 +31,12 @@ protected:
 	UProjectileMovementComponent* MovementComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UParticleSystemComponent* EffectComp;
+	/*UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	USoundCue* SoundLoop;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	USoundCue* SoundImpact;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UAudioComponent* AudioComp;*/
 
 	UFUNCTION()
 	void OnActorOverlap( UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

@@ -7,8 +7,8 @@
 // Sets default values for this component's properties
 USAttributeComponent::USAttributeComponent()
 {
-	
-	Health = 100;
+	HealthMax = 100;
+	Health = HealthMax;
 	// ...
 }
 
@@ -18,10 +18,25 @@ bool USAttributeComponent::IsAlive() const {
 
 
 
+
+
 bool USAttributeComponent::ApplyHealthChange(float Delta)
 {
-	Health += Delta;
-	onHealthChanged.Broadcast(nullptr,this,Health,Delta);
-	return true;
+	float OldHealth = Health;
+	Health = FMath::Clamp(Health + Delta, 0.0f, HealthMax);
+	float ActualDelta = Health - OldHealth;
+	onHealthChanged.Broadcast(nullptr, this, Health, ActualDelta);
+
+	return ActualDelta != 0;
+}
+
+bool USAttributeComponent::IsFullHealth() const
+{
+	return Health == HealthMax;
+}
+
+float USAttributeComponent::GetHealthMax() const
+{
+	return HealthMax;
 }
 

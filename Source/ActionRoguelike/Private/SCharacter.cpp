@@ -28,6 +28,8 @@ ASCharacter::ASCharacter()
 
 	AttributeComp = CreateDefaultSubobject<USAttributeComponent>("AttributeComp");
 
+	HandSocketName = "Muzzle_01";
+
 }
 
 void ASCharacter::PostInitializeComponents()
