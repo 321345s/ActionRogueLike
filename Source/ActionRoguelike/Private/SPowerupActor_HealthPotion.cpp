@@ -4,6 +4,8 @@
 #include "SPowerupActor_HealthPotion.h"
 #include "SAttributeComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/AudioComponent.h"
+#include "Sound/SoundCue.h"
 
 
 ASPowerupActor_HealthPotion::ASPowerupActor_HealthPotion()
@@ -12,6 +14,8 @@ ASPowerupActor_HealthPotion::ASPowerupActor_HealthPotion()
 
 	MeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	MeshComp->SetupAttachment(RootComponent);
+
+	PowerupSound = CreateDefaultSubobject<USoundCue>("PowerupSound");
 }
 
 
@@ -25,6 +29,7 @@ void ASPowerupActor_HealthPotion::Interact_Implementation(APawn* InstigatorPawn)
 
 	if (ensure(AttributeComp) && !AttributeComp->IsFullHealth()) {
 		if (AttributeComp->ApplyHealthChange(AttributeComp->GetHealthMax())) {
+			UGameplayStatics::SpawnSoundAttached(PowerupSound, GetRootComponent());
 			HideAndCooldownPowerup();
 		}
 	}

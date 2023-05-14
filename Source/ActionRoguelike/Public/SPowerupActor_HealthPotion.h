@@ -10,6 +10,7 @@
  * 
  */
 class UStaticMeshComponent;
+class USoundCue;
 
 UCLASS()
 class ACTIONROGUELIKE_API ASPowerupActor_HealthPotion : public ASPowerupActor
@@ -18,6 +19,9 @@ class ACTIONROGUELIKE_API ASPowerupActor_HealthPotion : public ASPowerupActor
 protected:
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
 	UStaticMeshComponent* MeshComp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		USoundCue* PowerupSound;
 
 public:
 	void Interact_Implementation(APawn* InstigatorPawn) override;

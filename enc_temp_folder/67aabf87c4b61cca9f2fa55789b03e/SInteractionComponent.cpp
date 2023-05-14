@@ -58,7 +58,7 @@ void USInteractionComponent::PrimaryInteract()
 
 		if (HitActor) {
 			if (HitActor->Implements<USGameplayInterface>()) {
-				UKismetSystemLibrary::PrintString(this, "Get a potion");
+				/*UKismetSystemLibrary::PrintString(this, "Get a potion");*/
 				APawn* MyPawn = Cast<APawn>(MyOwner);
 				ISGameplayInterface::Execute_Interact(HitActor, MyPawn);
 				break;
@@ -68,7 +68,7 @@ void USInteractionComponent::PrimaryInteract()
 	}
 	
 	
-	/*DrawDebugLine(GetWorld(), EyeLocation, End, LineColor, false, 2.0f, 0, 2.0f);*/
+	DrawDebugLine(GetWorld(), EyeLocation, End, LineColor, false, 2.0f, 0, 2.0f);
 
 
 
