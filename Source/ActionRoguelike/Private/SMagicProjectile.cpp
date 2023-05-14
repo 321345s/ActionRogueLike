@@ -53,7 +53,7 @@ void ASMagicProjectile::OnActorOverlap( UPrimitiveComponent* OverlappedComponent
 	if (OtherActor&& OtherActor!=GetInstigator()) {
 		USAttributeComponent* AttributeComp = Cast<USAttributeComponent>(OtherActor->GetComponentByClass(USAttributeComponent::StaticClass()));
 		if (AttributeComp) {
-			AttributeComp->ApplyHealthChange(damage);
+			AttributeComp->ApplyHealthChange(GetInstigator(),damage);
 			/*AudioComp = UGameplayStatics::SpawnSoundAttached(SoundImpact, GetRootComponent());
 			AudioComp->Stop();*/
 			

@@ -8,6 +8,7 @@
 
 class UPawnSensingComponent;
 class USAttributeComponent;
+class AActor;
 
 UCLASS()
 class ACTIONROGUELIKE_API ASAICharacter : public ACharacter
@@ -18,6 +19,8 @@ public:
 	ASAICharacter();
 
 protected:
+
+	void SetTargetActor(AActor* NewTarget);
 
 	virtual void PostInitializeComponents() override;
 

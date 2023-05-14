@@ -51,7 +51,7 @@ void ASExplosiveBarrel::OnActorHit(UPrimitiveComponent* HitComponent, AActor* Ot
 
 		USAttributeComponent* AttributeComp = Cast<USAttributeComponent>((OtherActor)->GetComponentByClass(USAttributeComponent::StaticClass()));
 		if (AttributeComp) {
-			AttributeComp->ApplyHealthChange(-50);
+			AttributeComp->ApplyHealthChange(this,-50);
 		}
 	}
 	Exploded = true;
