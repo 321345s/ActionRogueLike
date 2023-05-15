@@ -44,6 +44,7 @@ void ASCharacter::PostInitializeComponents()
 
 }
 
+
 // Called when the game starts or when spawned
 void ASCharacter::BeginPlay()
 {
@@ -89,7 +90,6 @@ void ASCharacter::PrimaryAttack_TimeElapsed()
 {
 	SpawnProjectile(ProjectileClass);
 }
-
 
 
 void ASCharacter::SpawnProjectile(TSubclassOf<AActor> ClassToSpawn)
@@ -208,5 +208,8 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 }
 
-
+void ASCharacter::HealSelf(float Amout /*100*/)
+{
+	AttributeComp->ApplyHealthChange(this, Amout);
+}
 

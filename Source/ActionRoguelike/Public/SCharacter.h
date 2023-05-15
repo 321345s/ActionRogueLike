@@ -88,4 +88,7 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
+	UFUNCTION(Exec)
+	void HealSelf(float Amout=100);
+
 };

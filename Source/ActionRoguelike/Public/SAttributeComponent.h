@@ -45,5 +45,8 @@ public:
 
 	bool IsFullHealth() const;
 
+	UFUNCTION(BlueprintCallable)
+	bool Kill(AActor* InstigatorActor);
+
 	float GetHealthMax() const;
 };
