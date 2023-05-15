@@ -7,6 +7,7 @@
 #include "SAttributeComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BrainComponent.h"
+#include "SWorldUserWidget.h"
 
 // Sets default values
 ASAICharacter::ASAICharacter()
@@ -40,6 +41,8 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 		}
 		
 
+		
+
 		AAIController* AIC = Cast<AAIController>(GetController());
 		if (AIC) {
 			AIC->GetBrainComponent()->StopLogic("Killed");
@@ -51,6 +54,17 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 	}
 
 	if (Delta < 0.0f) {
+
+		if (ActiveHealthBar == nullptr)
+		{
+			ActiveHealthBar = CreateWidget<USWorldUserWidget>(GetWorld(), HealthBarWidgetClass);
+			if (ActiveHealthBar) {
+
+				ActiveHealthBar->AttachedActor = this;
+				ActiveHealthBar->AddToViewport();
+
+			}
+		}
 		/*UKismetSystemLibrary::PrintString(this, "Hello Hit");*/
 		GetMesh()->SetScalarParameterValueOnMaterials("TimeToHit", GetWorld()->TimeSeconds);
 	}
