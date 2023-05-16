@@ -30,6 +30,9 @@ protected:
 		float Health;
 
 	UPROPERTY(EditDefaultsOnly, BluePrintReadOnly, Category = "Attributes")
+		float LowHealth;
+
+	UPROPERTY(EditDefaultsOnly, BluePrintReadOnly, Category = "Attributes")
 		float HealthMax;
 
 
@@ -44,6 +47,8 @@ public:
 	bool ApplyHealthChange(AActor* InstigatorActor,float Delta);
 
 	bool IsFullHealth() const;
+	UFUNCTION(BlueprintCallable)
+	bool IsLowHealth() const;
 
 	UFUNCTION(BlueprintCallable)
 	bool Kill(AActor* InstigatorActor);

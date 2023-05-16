@@ -9,6 +9,7 @@ USAttributeComponent::USAttributeComponent()
 {
 	HealthMax = 100;
 	Health = HealthMax;
+	LowHealth = 50;
 	// ...
 }
 
@@ -65,4 +66,11 @@ bool USAttributeComponent::Kill(AActor* InstigatorActor)
 {
 	return ApplyHealthChange(InstigatorActor, -GetHealthMax());
 }
+
+bool USAttributeComponent::IsLowHealth() const
+{
+	return Health <= LowHealth;
+}
+
+
 
