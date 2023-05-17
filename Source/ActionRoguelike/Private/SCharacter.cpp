@@ -182,6 +182,16 @@ void ASCharacter::KillSelf()
 	AttributeComp->Kill(this);
 }
 
+void ASCharacter::RestartGame()
+{
+	GetWorld()->GetFirstPlayerController()->ConsoleCommand(TEXT("RestartLevel"));
+}
+
+void ASCharacter::QuitGame()
+{
+	GetWorld()->GetFirstPlayerController()->ConsoleCommand("QUIT");
+}
+
 void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComp, float NewHealth, float Delta)
 {
 	if (NewHealth <= 0&&Delta<0.0f) {
@@ -224,6 +234,8 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAction("PrimaryInteract", IE_Pressed, this, &ASCharacter::PrimaryInteract);
 
 	PlayerInputComponent->BindAction("KillSelf", IE_Pressed, this, &ASCharacter::KillSelf);
+	PlayerInputComponent->BindAction("RestartGame", IE_Pressed, this, &ASCharacter::RestartGame);
+	PlayerInputComponent->BindAction("QuitGame", IE_Pressed, this, &ASCharacter::QuitGame);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASCharacter::Jump);
 	PlayerInputComponent->BindAction("DashShift", IE_Pressed, this, &ASCharacter::DashShift);

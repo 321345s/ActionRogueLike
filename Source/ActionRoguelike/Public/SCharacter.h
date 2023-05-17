@@ -91,6 +91,8 @@ protected:
 	void DashShiftComplete();
 
 	void KillSelf();
+	void RestartGame();
+	void QuitGame();
 
 	UFUNCTION()
 	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComp, float NewHealth, float Delta);
