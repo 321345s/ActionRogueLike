@@ -10,6 +10,7 @@
 class UEnvQuery;
 class UEnvQueryInstanceBlueprintWrapper;
 class UCurveFloat;
+class USoundCue;
 
 /**
  * 
@@ -25,6 +26,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 		float SpawnTimerInterval;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly,Category="Audio")
+		USoundCue* SoundSpawn;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Credits")
 		int32 CreditsPerKill;

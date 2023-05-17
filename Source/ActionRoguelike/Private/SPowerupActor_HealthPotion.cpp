@@ -37,7 +37,7 @@ void ASPowerupActor_HealthPotion::Interact_Implementation(APawn* InstigatorPawn)
 		if (ASPlayerState* PS = InstigatorPawn->GetPlayerState<ASPlayerState>()) {
 
 
-			int32 CreditCost = 3;
+			int32 CreditCost = 1;
 			if (PS->RemoveCredits(CreditCost)&&AttributeComp->ApplyHealthChange(this, AttributeComp->GetHealthMax())) {
 				UGameplayStatics::SpawnSoundAttached(PowerupSound, GetRootComponent());
 				HideAndCooldownPowerup();

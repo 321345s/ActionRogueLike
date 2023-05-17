@@ -11,6 +11,7 @@ class USAttributeComponent;
 class AActor;
 class UUserWidget;
 class USWorldUserWidget;
+class USoundCue;
 
 UCLASS()
 class ACTIONROGUELIKE_API ASAICharacter : public ACharacter
@@ -25,6 +26,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		void SetHealthBarNullptr();
+
+	USoundCue* GetShotAudio();
 
 protected:
 
@@ -42,6 +45,12 @@ protected:
 
 	UFUNCTION()
 	void OnPawnSeen(APawn* Pawn);
+
+	//Audio
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		USoundCue* SoundDied;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		USoundCue* SoundShot;
 
 	
 

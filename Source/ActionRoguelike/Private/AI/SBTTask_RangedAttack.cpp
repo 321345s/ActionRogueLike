@@ -7,6 +7,9 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "SAttributeComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
+#include "AI/SAICharacter.h"
+
 
 USBTTask_RangedAttack::USBTTask_RangedAttack()
 {
@@ -46,8 +49,12 @@ EBTNodeResult::Type USBTTask_RangedAttack::ExecuteTask(UBehaviorTreeComponent& O
 		Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 		Params.Instigator = MyController->GetPawn();
 		/*Params.AddIgnoredActor(this);*/
+		
 		AActor* NewProj = GetWorld()->SpawnActor<AActor>(ProjectileClass, MuzzleLocation, MuzzleRotation, Params);
-
+		
+		ASAICharacter* MyAIC = Cast<ASAICharacter>(MyController->GetPawn());
+		UGameplayStatics::SpawnSoundAttached(MyAIC->GetShotAudio(), MyAIC->GetRootComponent());
+		
 		return NewProj ? EBTNodeResult::Succeeded : EBTNodeResult::Failed;
 	
 	}

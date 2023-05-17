@@ -11,6 +11,8 @@
 #include "SCharacter.h"
 #include "Logging/LogMacros.h"
 #include "SPlayerState.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
 
 static TAutoConsoleVariable<bool> CVarSpawnBots(TEXT("FDU.SpawnBots"), true, TEXT("Enable spawning of bots via timer."), ECVF_Cheat);
 
@@ -139,7 +141,9 @@ void ASGameModeBase::RespawnPlayerElapsed(AController* controller)
 
 		controller->UnPossess();
 		RestartPlayer(controller);
-		/*ASCharacter* character = Cast<ASCharacter>(controller->GetPawn());
+		ASCharacter* character = Cast<ASCharacter>(controller->GetPawn());
+		UGameplayStatics::SpawnSoundAttached(SoundSpawn, character->GetRootComponent());
+		/*
 		USAttributeComponent* AttributeComp = USAttributeComponent::GetAttributes(character);
 		AttributeComp->ApplyHealthChange(character, 0);*/
 	}

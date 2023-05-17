@@ -33,6 +33,15 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Attack")
 	TSubclassOf<AActor> BlackHoleProjectileClass;
 
+	//sound
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		USoundCue* SoundDead;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		USoundCue* SoundCastMagic;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		USoundCue* SoundBlackhole;
+
+
 
 	UPROPERTY(EditAnywhere,Category="Attack")
 		UAnimMontage* AttackAnim;

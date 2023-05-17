@@ -10,8 +10,11 @@
 #include "SAttributeComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/AudioComponent.h"
-#include "Sound/SoundCue.h"
 #include "SActorComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
 
 // Sets default values
 ASCharacter::ASCharacter()
@@ -151,7 +154,9 @@ void ASCharacter::Dash_TimeElapsed()
 void ASCharacter::BlackHoleAttack()
 {
 	PlayAnimMontage(AttackAnim);
+	UGameplayStatics::SpawnSoundAttached(SoundCastMagic, GetRootComponent());
 	GetWorldTimerManager().SetTimer(TimerHandle_BlackHole, this, &ASCharacter::BlackHoleAttack_TimeElapesed, AttackAnimDelay);
+	UGameplayStatics::SpawnSoundAttached(SoundBlackhole, GetRootComponent());
 }
 
 void ASCharacter::BlackHoleAttack_TimeElapesed()
@@ -177,6 +182,11 @@ void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent*
 	if (NewHealth <= 0&&Delta<0.0f) {
 		APlayerController* PC = Cast<APlayerController>(GetController());
 		DisableInput(PC);
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		GetCharacterMovement()->DisableMovement();
+		UGameplayStatics::SpawnSoundAttached(SoundDead, GetRootComponent());
+		GetMesh()->SetAllBodiesSimulatePhysics(true);
+		GetMesh()->SetCollisionProfileName("Ragdoll");
 	}
 
 	if (Delta < 0.0f) {

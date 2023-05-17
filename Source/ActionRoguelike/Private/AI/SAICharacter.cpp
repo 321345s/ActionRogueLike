@@ -10,6 +10,8 @@
 #include "SWorldUserWidget.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
 
 // Sets default values
 ASAICharacter::ASAICharacter()
@@ -47,6 +49,11 @@ void ASAICharacter::SetHealthBarNullptr()
 	ActiveHealthBar = nullptr;
 }
 
+USoundCue* ASAICharacter::GetShotAudio()
+{
+	return SoundShot;
+}
+
 void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComp, float NewHealth, float Delta)
 {
 
@@ -67,18 +74,20 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 		GetMesh()->SetAllBodiesSimulatePhysics(true);
 		GetMesh()->SetCollisionProfileName("Ragdoll");
 
+		UGameplayStatics::SpawnSoundAttached(SoundDied, GetRootComponent());
+
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		GetCharacterMovement()->DisableMovement();
-		//if (ActiveHealthBar) {
+		if (ActiveHealthBar) {
 			ActiveHealthBar->RemoveFromParent();
-		//}
+		}
 
 		
 
 		SetLifeSpan(10.0f);
 	}
 
-	if (Delta < 0.0f) {
+	if (Delta < 0.0f&&NewHealth!=0) {
 
 		if (ActiveHealthBar == nullptr)
 		{
