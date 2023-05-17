@@ -69,8 +69,11 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		GetCharacterMovement()->DisableMovement();
+		//if (ActiveHealthBar) {
+			ActiveHealthBar->RemoveFromParent();
+		//}
 
-		ActiveHealthBar->RemoveFromParent();
+		
 
 		SetLifeSpan(10.0f);
 	}

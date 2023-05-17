@@ -139,5 +139,8 @@ void ASGameModeBase::RespawnPlayerElapsed(AController* controller)
 
 		controller->UnPossess();
 		RestartPlayer(controller);
+		/*ASCharacter* character = Cast<ASCharacter>(controller->GetPawn());
+		USAttributeComponent* AttributeComp = USAttributeComponent::GetAttributes(character);
+		AttributeComp->ApplyHealthChange(character, 0);*/
 	}
 }
