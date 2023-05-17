@@ -12,6 +12,7 @@ class USInteractionComponent;
 class UAnimMontage;
 class USAttributeComponent;
 class USoundCue;
+class USActorComponent;
 
 UCLASS()
 class ACTIONROGUELIKE_API ASCharacter : public ACharacter
@@ -31,6 +32,7 @@ protected:
 	TSubclassOf<AActor> DashProjectileClass;
 	UPROPERTY(EditAnywhere, Category = "Attack")
 	TSubclassOf<AActor> BlackHoleProjectileClass;
+
 
 	UPROPERTY(EditAnywhere,Category="Attack")
 		UAnimMontage* AttackAnim;
@@ -53,6 +55,9 @@ protected:
 		USInteractionComponent* InteractionComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 		USAttributeComponent* AttributeComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+		USActorComponent* ActionComp;
 	//audio
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	USoundCue* HammerSound;

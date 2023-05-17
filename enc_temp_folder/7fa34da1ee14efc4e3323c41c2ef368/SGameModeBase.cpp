@@ -19,7 +19,7 @@ ASGameModeBase::ASGameModeBase()
 	SpawnTimerInterval = 5.0f;
 	/*MaxBotCount = 5.0f;*/
 
-	CreditsPerKill = 1;
+	CreditsPerKill = 20;
 
 	PlayerStateClass = ASPlayerState::StaticClass();
 }

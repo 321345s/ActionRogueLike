@@ -11,6 +11,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Components/AudioComponent.h"
 #include "Sound/SoundCue.h"
+#include "SActorComponent.h"
 
 // Sets default values
 ASCharacter::ASCharacter()
@@ -32,6 +33,8 @@ ASCharacter::ASCharacter()
 	AttributeComp = CreateDefaultSubobject<USAttributeComponent>("AttributeComp");
 
 	HandSocketName = "Muzzle_01";
+
+	ActionComp = CreateDefaultSubobject<USActorComponent>("ActionComp");
 
 
 	HammerSound = CreateDefaultSubobject<USoundCue>("HammerSound");
@@ -159,11 +162,14 @@ void ASCharacter::BlackHoleAttack_TimeElapesed()
 void ASCharacter::DashShift()
 {
 	GetCharacterMovement()->MaxWalkSpeed = 1200;
+
+	//ActionComp->StartActionByName(this, "Sprint");
 }
 
 void ASCharacter::DashShiftComplete()
 {
 	GetCharacterMovement()->MaxWalkSpeed = 600;
+	//ActionComp->StopActionByName(this, "Sprint");
 }
 
 void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComp, float NewHealth, float Delta)

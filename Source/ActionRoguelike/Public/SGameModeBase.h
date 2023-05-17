@@ -26,6 +26,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 		float SpawnTimerInterval;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Credits")
+		int32 CreditsPerKill;
+
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 		TSubclassOf<AActor> MinionClass;
 
