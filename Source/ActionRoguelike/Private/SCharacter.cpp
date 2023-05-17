@@ -177,6 +177,11 @@ void ASCharacter::DashShiftComplete()
 	//ActionComp->StopActionByName(this, "Sprint");
 }
 
+void ASCharacter::KillSelf()
+{
+	AttributeComp->Kill(this);
+}
+
 void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComp, float NewHealth, float Delta)
 {
 	if (NewHealth <= 0&&Delta<0.0f) {
@@ -185,8 +190,8 @@ void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent*
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		GetCharacterMovement()->DisableMovement();
 		UGameplayStatics::SpawnSoundAttached(SoundDead, GetRootComponent());
-		GetMesh()->SetAllBodiesSimulatePhysics(true);
-		GetMesh()->SetCollisionProfileName("Ragdoll");
+		/*GetMesh()->SetAllBodiesSimulatePhysics(true);
+		GetMesh()->SetCollisionProfileName("Ragdoll");*/
 	}
 
 	if (Delta < 0.0f) {
@@ -217,6 +222,8 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	//PlayerInputComponent->BindAction("Dash", IE_Pressed, this, &ASCharacter::Dash);
 
 	PlayerInputComponent->BindAction("PrimaryInteract", IE_Pressed, this, &ASCharacter::PrimaryInteract);
+
+	PlayerInputComponent->BindAction("KillSelf", IE_Pressed, this, &ASCharacter::KillSelf);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASCharacter::Jump);
 	PlayerInputComponent->BindAction("DashShift", IE_Pressed, this, &ASCharacter::DashShift);

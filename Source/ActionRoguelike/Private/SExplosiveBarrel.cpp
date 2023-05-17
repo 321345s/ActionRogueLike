@@ -6,6 +6,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "DrawDebugHelpers.h"
 #include "SAttributeComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
 
 // Sets default values
 ASExplosiveBarrel::ASExplosiveBarrel()
@@ -55,7 +57,8 @@ void ASExplosiveBarrel::OnActorHit(UPrimitiveComponent* HitComponent, AActor* Ot
 		}
 	}
 	Exploded = true;
-	
+	UGameplayStatics::SpawnSoundAttached(SoundExp, GetRootComponent());
+	Destroy();
 
 }
 

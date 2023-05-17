@@ -90,6 +90,8 @@ protected:
 	void DashShift();
 	void DashShiftComplete();
 
+	void KillSelf();
+
 	UFUNCTION()
 	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComp, float NewHealth, float Delta);
 

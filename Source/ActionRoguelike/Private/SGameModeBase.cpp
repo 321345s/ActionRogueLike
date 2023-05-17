@@ -137,7 +137,7 @@ void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
 
 void ASGameModeBase::RespawnPlayerElapsed(AController* controller)
 {
-	if (ensure(controller)) {
+	if (controller) {
 
 		controller->UnPossess();
 		RestartPlayer(controller);

@@ -8,6 +8,7 @@
 
 class UStaticMeshComponent;
 class URadialForceComponent;
+class USoundCue;
 UCLASS()
 class ACTIONROGUELIKE_API ASExplosiveBarrel : public AActor
 {
@@ -23,6 +24,9 @@ protected:
 	UStaticMeshComponent* MeshComp;
 	UPROPERTY(VisibleAnywhere)
 	URadialForceComponent* ForceComp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		USoundCue* SoundExp;
 
 	bool Exploded;
 
