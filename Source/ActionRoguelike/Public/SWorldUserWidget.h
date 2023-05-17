@@ -22,7 +22,9 @@ protected:
 	UPROPERTY(meta = (BindWidget))
 	USizeBox* ParentSizeBox;
 
+
 public:
+
 	UPROPERTY(BlueprintReadOnly,Category="UI")
 	AActor* AttachedActor;
 

@@ -4,6 +4,9 @@
 #include "AI/SBTService_CheckAttackRange.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "AIController.h"
+#include "SPlayerState.h"
+#include "AI/SAICharacter.h"
+#include "SWorldUserWidget.h"
 
 void USBTService_CheckAttackRange::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
@@ -23,6 +26,19 @@ void USBTService_CheckAttackRange::TickNode(UBehaviorTreeComponent& OwnerComp, u
 					bool bHasLOS = false;
 					if (bWithinRange) {
 						bHasLOS = MyController->LineOfSightTo(TargetActor);
+					}
+
+					if (!bHasLOS) {
+						ASAICharacter* AICharacter = Cast<ASAICharacter>(AIPawn);
+						if (AICharacter) {
+							USWorldUserWidget* HealthBar = AICharacter->GetHealthBar();
+							if (HealthBar) {
+								HealthBar->RemoveFromParent();
+								AICharacter->SetHealthBarNullptr();
+							}
+							
+						}
+						
 					}
 
 					

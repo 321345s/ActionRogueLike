@@ -6,10 +6,12 @@
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "Components/SizeBox.h"
 
+
+
 void USWorldUserWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
-
+	WorldOffset = FVector(0, 0, 70);//fix me:hard coding
 	if (!IsValid(AttachedActor)) {
 
 		RemoveFromParent();
@@ -27,3 +29,5 @@ void USWorldUserWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTim
 		}
 	}
 }
+
+

@@ -37,6 +37,16 @@ void ASAICharacter::OnPawnSeen(APawn* Pawn)
 	SetTargetActor(Pawn);
 }
 
+USWorldUserWidget* ASAICharacter::GetHealthBar()
+{
+	return ActiveHealthBar;
+}
+
+void ASAICharacter::SetHealthBarNullptr()
+{
+	ActiveHealthBar = nullptr;
+}
+
 void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComp, float NewHealth, float Delta)
 {
 
@@ -59,6 +69,8 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		GetCharacterMovement()->DisableMovement();
+
+		ActiveHealthBar->RemoveFromParent();
 
 		SetLifeSpan(10.0f);
 	}

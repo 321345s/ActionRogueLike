@@ -119,6 +119,14 @@ void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
 		ASPlayerState* PS = KillerPawn->GetPlayerState<ASPlayerState>();
 		if (PS) {
 			PS->AddCredits(CreditsPerKill);
+			/*APawn* VicPawn = Cast<APawn>(VictimActor);
+			ASPlayerState* PS_Vic = VicPawn->GetPlayerState<ASPlayerState>();*/
+
+		}
+		APawn* VicPawn = Cast<APawn>(VictimActor);
+		ASPlayerState* PS_Vic = VicPawn->GetPlayerState<ASPlayerState>();
+		if (PS_Vic) {
+			PS_Vic->RemoveCredits(PS_Vic->GetCredits());
 		}
 	}
 

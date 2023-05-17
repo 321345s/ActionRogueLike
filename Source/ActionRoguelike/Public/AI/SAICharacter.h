@@ -20,6 +20,12 @@ class ACTIONROGUELIKE_API ASAICharacter : public ACharacter
 public:
 	ASAICharacter();
 
+	UFUNCTION(BlueprintCallable)
+		USWorldUserWidget* GetHealthBar();
+
+	UFUNCTION(BlueprintCallable)
+		void SetHealthBarNullptr();
+
 protected:
 
 	USWorldUserWidget* ActiveHealthBar;
@@ -36,6 +42,8 @@ protected:
 
 	UFUNCTION()
 	void OnPawnSeen(APawn* Pawn);
+
+	
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 		USAttributeComponent* AttributeComp;
